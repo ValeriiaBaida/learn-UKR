@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/styles/general.css}">
+    <link rel="stylesheet" th:href="@{/styles/header.css}">
+    <link rel="stylesheet" th:href="@{/styles/index.css}">
+    <title>LearnUKR</title>
+</head>
+
+<body>
+<header th:replace="~{fragments/header.html :: header}"></header>
+
+    <div class="content">
+        <div class="about">
+            <img th:src="@{/images/LearnUKR.svg}" alt="logo" class="logo">
+            <p class="about-text">
+                Інтерактивна онлайн платформа, яка допоможе досконало вивчити українську мову або швидко та
+                ефективнопідготуватися до іспитів. Наша платформа пропонує різноманітні уроки з граматики, лексики, та
+                морфології. Наші уроки створені професіоналами в галузі викладання української мови і містять в собі
+                цікавий контент, відео та аудіо матеріали для покращення ваших знань.
+            </p>
+            <a th:href="@{/topics}" class="btn-begin">Почати підготовку</a>
+        </div>
+    </div>
+</body>
+
+</html>

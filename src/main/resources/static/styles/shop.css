@@ -1,0 +1,39 @@
+.content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+
+    margin: 32px auto;
+    width: 1140px;
+}
+
+.shop-content{
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     gap: 12px;
+
+     padding: 12px;
+     box-shadow: 0 0 4px rgba(0, 0, 0, .2);
+     border-radius: 4px;
+}
+
+.shop-content img{
+     width: 32px;
+}
+
+.shop-title{
+     display: flex;
+     align-items: center;
+     gap: 12px;
+}
+
+.shop-price{
+     display: flex;
+     align-items: center;
+     gap: 4px;
+}
+
+.shop-price img{
+     width: 24px;
+}

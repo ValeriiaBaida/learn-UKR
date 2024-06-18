@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/styles/general.css}">
+    <link rel="stylesheet" th:href="@{/styles/header.css}">
+    <link rel="stylesheet" th:href="@{/styles/topics.css}">
+    <title>Topics</title>
+</head>
+
+<body>
+<header th:replace="~{fragments/header.html :: header}"></header>
+<div class="content">
+    <div class="navigation">
+        <img th:src="@{/images/home.svg}" alt="home">
+        <a th:href="@{/}">На головну</a>
+        <a th:href="@{/topics}">Заняття</a>
+    </div>
+    <div class="topic" th:each="topic : ${topics}" th:object="${topic}">
+        <div class="topic-title">
+            <div class="topic-name">
+                <span class="topic-number" th:text="|Тема *{order}:|"></span>
+                <span th:text="*{name}"></span>
+            </div>
+            <a th:href="@{/topics/{id}(id=*{id})}" class="topic-begin">Перейти до теми</a>
+        </div>
+        <div class="topic-content">
+            <div class="lessons">
+                <div class="lesson" th:each="lesson : *{lessons}" th:object="${lesson}">
+                    <div class="lesson-title">
+                        <div class="lesson-number" th:text="|Урок *{order}|"></div>
+                        <div class="lesson-name" th:text="*{name}"></div>
+                    </div>
+                    <div class="lesson-progress">
+                        <div class="lesson-progress-title">
+                            <div class="progress-title">Прогрес</div>
+                            <div class="progress-value"
+                                 th:text="|${service.computeProgress(user.completedSections, lesson.sections) * 100}%|">
+                            </div>
+                        </div>
+                        <div class="lesson-progress-bar">
+                            <div class="lesson-progress-value"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tasks">
+                <div class="tasks-name">Вправи</div>
+                <div class="tasks-progress-container">
+                    <div class="tasks-progress">
+                        <div class="tasks-progress-bar answered-progress-task">
+                            <div class="tasks-progress-value"
+                                 th:text="|${service.computeTaskProgress(repository.findAllByUser(user), topic.tasks) * 100}%|">
+                            </div>
+                        </div>
+                        <div class="tasks-progress-title">Виконано вправ</div>
+                    </div>
+                    <div class="tasks-progress">
+                        <div class="tasks-progress-bar completed-progress-task">
+                            <div class="tasks-progress-value"
+                                 th:text="|${service.computeTaskCorrectProgress(repository.findAllByUser(user), topic.tasks) * 100}%|">
+                            </div>
+                        </div>
+                        <div class="tasks-progress-title">Середній бал</div>
+                    </div>
+                </div>
+                <a th:href="@{/topics/{id}/tasks(id=${topic.id})}" class="tasks-begin">Почати вправи</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.querySelectorAll('.tasks-progress-value')
+        .forEach(v=>v.textContent = `${parseFloat(v.textContent).toFixed(1)}%`)
+</script>
+<script th:src="@{/scripts/progress.js}"></script>
+</body>
+
+</html>

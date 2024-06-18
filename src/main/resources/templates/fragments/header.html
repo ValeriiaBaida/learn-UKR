@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/styles/general.css}">
+    <link rel="stylesheet" th:href="@{/styles/header.css}">
+    <title>Header</title>
+</head>
+
+<body>
+<header th:fragment="header">
+    <div class="header-container">
+        <a th:href="@{/}">
+            <img class="logo" th:src="@{/images/LearnUKR.svg}" alt="logo">
+        </a>
+        <div class="links">
+            <a th:href="@{/}">Про веб-портал</a>
+            <a th:href="@{/topics}">Заняття</a>
+            <a th:href="@{/shop}">Магазин<img class="crystal" th:src="@{/images/ukr-coin.png}"><span th:text="(${user} ? ${user.coins} : '')"></span></a>
+            <a th:href="@{(${user} ? '/logout' : '/login')}" class="account">
+                <img th:src="@{/images/account_circle.svg}" alt="account">
+                <span th:text="(${user} ? ${user.name} + ' ' + ${user.surname} : 'Увійти')">Валерія Байда</span>
+            </a>
+        </div>
+    </div>
+</header>
+</body>
+
+</html>

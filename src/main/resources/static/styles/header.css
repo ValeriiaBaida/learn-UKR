@@ -1,0 +1,53 @@
+* {
+    font-family: 'Rubik';
+}
+
+header {
+    height: 80px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .08);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 1140px;
+    height: 100%;
+    margin: auto;
+}
+
+.logo {
+    height: 32px;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+
+    height: 40px;
+    width: 520px;
+    padding: 8px 12px;
+}
+
+.links a{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.links a img{
+    width: 24px;
+}
+
+.account {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.account img {
+    height: 24px;
+}

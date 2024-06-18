@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/styles/general.css}">
+    <link rel="stylesheet" th:href="@{/styles/header.css}">
+    <link rel="stylesheet" th:href="@{/styles/shop.css}">
+    <title>Shop</title>
+
+
+</head>
+
+<body>
+    <header th:replace="~{fragments/header.html :: header}"></header>
+    <div class="content">
+        <a th:href="@{/shop/{fileName}(fileName=*{name})}" target="_blank" class="shop-content" th:each="mat : ${materials}" th:object="${mat}">
+            <div class="shop-title">
+                <img th:src="@{/images/pdf.png}" alt="pdf">
+                <div th:text="*{name}"></div>
+            </div>
+            <div class="shop-price">
+                <img class="crystal" th:if="${!mat.getUsers().contains(user)}" th:src="@{/images/ukr-coin.png}">
+                <div th:text="${mat.getUsers().contains(user)} ? 'В наявності' : *{price}"></div>
+            </div>
+        </a>
+    </div>
+</body>
+
+</html>

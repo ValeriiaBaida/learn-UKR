@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/styles/general.css}">
+    <link rel="stylesheet" th:href="@{/styles/auth.css}">
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="content">
+        <div class="registration">
+            <div class="reg-title">
+                <a th:href="@{/}" class="arrow">
+                    <img th:src="@{/images/arrow_back.svg}" alt="arrow_back">
+                </a>
+                <span class="title">Авторизація</span>
+            </div>
+            <form class="reg-form" method="post" action="/login">
+                <input type="email" name="username" placeholder="E-mail" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <div class="btn-container">
+                    <button type="submit" class="submit-btn">Увійти</button>
+                    <a th:href="@{/registration}" class="to-auth">Реєстрація</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

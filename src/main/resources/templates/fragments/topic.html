@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/styles/general.css">
+    <link rel="stylesheet" href="../../static/styles/topic.css">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="topic-section" th:fragment="tasks">
+        <h2 class="lesson-fragment-title">Вправи по темі</h2>
+        <div class="tasks">
+            <div class="task" th:each="task : ${tasks}" th:object="${task}" th:id="*{id}">
+                <div class="task-title" th:text="|Завдання *{order}|"></div>
+                <div class="task-description" th:text="*{task}"></div>
+                <div class="answers">
+                    <label class="answer" th:each="answer : *{answers}" th:object="${answer}">
+                        <div class="answer-input-bar">
+                            <input type="radio" th:name="|task${task.order}|" th:value="*{answer}">
+                            <div th:text="*{answer}"></div>
+                        </div>
+                    </label>
+                </div>
+                <div class="controlls">
+                    <button class="check" disabled>Перевірити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="topic-section" th:fragment="sections">
+        <h2 class="lesson-fragment-title" th:text="${section.name}">Приголосні звуки</h2>
+        <div class="fragments">
+            <div th:each="fragment : ${section.fragments}" th:switch="${fragment.fragmentType.name()}">
+                <div th:case="'TEXT'">
+                    <p class="fragment-content" th:each="content : ${fragment.contents}" th:text="${content}">
+                    </p>
+                </div>
+                <ul th:case="'LIST'">
+                    <li class="fragment-content" th:each="content : ${fragment.contents}" th:text="${content}">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

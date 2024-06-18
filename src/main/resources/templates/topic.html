@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/styles/general.css}">
+    <link rel="stylesheet" th:href="@{/styles/header.css}">
+    <link rel="stylesheet" th:href="@{/styles/topic.css}">
+    <title>Topic</title>
+</head>
+
+<body>
+<header th:replace="~{fragments/header.html :: header}"></header>
+
+<div class="content">
+    <div class="navigation">
+        <img th:src="@{/images/home.svg}" alt="home">
+        <a th:href="@{/}">На головну</a>
+        <a th:href="@{/topics}">Заняття</a>
+        <a th:text="|Тема ${topic.order}: ${topic.name}|"></a>
+    </div>
+    <div class="topic" th:object="${topic}">
+        <div class="topic-content">
+            <div class="topic-title">
+                <div class="topic-number" th:text="|Тема *{order}:|"></div>
+                <div class="topic-name" th:text="*{name}"></div>
+            </div>
+
+            <div class="lessons">
+                <details class="lesson" th:each="lesson : ${lessons}" th:object="${lesson}">
+                    <summary>
+                        <div class="lesson-title" th:if="${#lists.size(lesson.sections) > 1}">
+                            <div class="lesson-number" th:text="|Урок *{order}:|"></div>
+                            <div class="lesson-name" th:text="*{name}"></div>
+                        </div>
+                        <a th:if="${!(#lists.size(lesson.sections) > 1)}" class="lesson-title"
+                           th:href="@{/topics/{topicId}?l={l}(topicId=${topic.id}, l=${lesson.order})}">
+                            <div class="lesson-number" th:text="|Урок *{order}:|"></div>
+                            <div class="lesson-name" th:text="*{name}"></div>
+                        </a>
+                    </summary>
+                    <div class="lesson-fragments" th:if="${#lists.size(lesson.sections) > 1}">
+                        <a class="lesson-fragment" th:each="section : *{sections}"
+                           th:href="@{/topics/{topicId}?l={l}&s={s}(topicId=${topic.id}, l=${lesson.order}, s=${section.order})}"
+                           th:text="${section.name}">
+                        </a>
+                    </div>
+                </details>
+            </div>
+            <a class="task-section" th:href="@{/topics/{topicId}/tasks(topicId=${topic.id})}">
+                Вправи по темі
+            </a>
+        </div>
+
+        <div th:if="${section}" style="width: 100%;">
+            <div class="topic-section" th:replace="~{fragments/topic.html :: sections}"></div>
+        </div>
+
+        <div th:if="${tasks}" style="width: 100%;">
+            <div class="topic-section" th:replace="~{fragments/topic.html :: tasks}"></div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/scripts/script.js}"></script>
+<script th:src="@{/scripts/test.js}"></script>
+</body>
+
+</html>

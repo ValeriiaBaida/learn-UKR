@@ -1,0 +1,89 @@
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background-image: url(/images/bground.png);
+    background-size: 100%;
+    min-height: 100vh;
+}
+
+.registration {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    width: 500px;
+    margin: auto;
+    padding: 32px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, .3);
+    backdrop-filter: blur(10px);
+}
+
+.reg-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+}
+
+.arrow {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 0;
+}
+
+.title {
+    font-size: 28px;
+}
+
+input {
+    font-size: 18px;
+
+    height: 50px;
+    width: 100%;
+    border-radius: 12px;
+    padding: 10px 20px;
+    border: none;
+    background-color: rgba(255, 255, 255, .6);
+}
+
+.reg-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.name-fields {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+    margin-top: 10px;
+}
+
+.submit-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+
+    height: 50px;
+    width: 100%;
+    background-color: #2a80f4;
+    border-radius: 12px;
+    border: none;
+}
